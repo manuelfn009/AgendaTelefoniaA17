@@ -1,0 +1,84 @@
+<div class="d-flex flex-column align-items-center bg-white text-white p-3 rounded" style="width: 700px;">
+    <div>
+        <button class="btn btn-success p-3 fs-5" onclick="window.modal.showModal();">Añadir contacto</button>
+        <button class="btn btn-danger p-3 fs-5 ms-4" (click)="borrarAgenda()">Borrar agenda</button>
+    </div>
+    <div class="mt-3 d-flex flex-column align-items-center h-100 w-100">
+        <div
+            class="d-flex text-black align-items-center justify-content-between border-bottom p-3 border-2 border-black w-100 ">
+            <h3>Nombre - Teléfono</h3>
+            <i class="fa-solid fa-user-pen fs-3 p-2 border border-2 border-black rounded d-none"></i>
+
+        </div>
+        @for (item of listContact(); track item.id) {
+        <div
+            class="d-flex text-black align-items-center justify-content-between border-bottom p-3 border-2 border-black w-100 ">
+            <h3>{{item.nombre}} - {{item.telefono}}</h3>
+            <div>
+                <i class="fa-solid fa-user-pen fs-3 p-2 text-primary border border-2 border-primary rounded" (click)="modificarContacto(item)" onclick="window.modal2.showModal();"></i>
+                <i class="fa-solid fa-trash text-danger fs-3 p-2 ms-3 border border-danger border-2 rounded" (click)="borrarContacto(item)" ></i>
+            </div>            
+        </div>
+        }
+
+
+    </div>
+</div>
+
+<dialog id="modal" class="rounded bg-light">
+    <div class="modal-dialog p-2 rounded bg-light">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Añadir contacto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="window.modal.close();"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input [formControl]="nombreControlador" type="text" class="form-control" id="recipient-name">
+                       
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Teléfono:</label>
+                        <input [formControl]="telefonoControlador" type="text" class="form-control" id="recipient-name">
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="addContacto()" data-bs-dismiss="modal" onclick="window.modal.close();">Añadir</button>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="modal2" class="rounded bg-light">
+    <div class="modal-dialog p-2 rounded bg-light">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Añadir contacto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="window.modal2.close();"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input [formControl]="nombreControlador" type="text" class="form-control" id="recipient-name">
+                       
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Teléfono:</label>
+                        <input [formControl]="telefonoControlador" type="text" class="form-control" id="recipient-name">
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="window.modal2.close();">Añadir</button>
+            </div>
+        </div>
+    </div>
+</dialog>
